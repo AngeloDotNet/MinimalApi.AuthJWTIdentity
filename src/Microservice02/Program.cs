@@ -1,31 +1,36 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Shared;
 
 namespace Microservice02
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-			builder.Services.AddSwaggerAuth();
-			builder.Services.AddAuthenticationJWT(builder.Configuration);
+            builder.Services.AddSwaggerAuth();
 
-			var app = builder.Build();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseInMemoryDatabase("IdentityMemoryDatabase"));
 
-			if (app.Environment.IsDevelopment())
-			{
-				app.UseSwagger();
-				app.UseSwaggerUI();
-			}
+            builder.Services.AddAuthenticationJWT();
 
-			app.UseAuthentication();
-			app.UseAuthorization();
+            var app = builder.Build();
 
-			app.MapGet("/secure-endpoint", [Authorize] () => "This is a secure endpoint");
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-			app.Run();
-		}
-	}
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.MapGet("/secure", [Authorize] () => "This is a secure endpoint");
+
+            app.Run();
+        }
+    }
 }
