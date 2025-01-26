@@ -74,7 +74,7 @@ namespace MicroserviceAuth
 				var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
 				var tokenDescriptor = new SecurityTokenDescriptor
 				{
-					Subject = new ClaimsIdentity([new Claim(ClaimTypes.Name, user.UserName!)]),
+					Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.UserName!) }),
 					Expires = DateTime.UtcNow.AddDays(7),
 					SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
 					Issuer = builder.Configuration["Jwt:Issuer"],
