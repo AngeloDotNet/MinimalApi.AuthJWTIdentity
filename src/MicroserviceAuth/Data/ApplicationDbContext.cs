@@ -13,7 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 	{
 		base.OnModelCreating(builder);
 
-		// Personalizza il modello ASP.NET Identity e sostituisci i valori predefiniti se necessario
+		// Customize the ASP.NET Identity model and override the defaults if needed
 		// Ad esempio, puoi rinominare le tabelle di ASP.NET Identity e altro
 		// Aggiungi le tue personalizzazioni dopo aver chiamato base.OnModelCreating(builder);
 	}
