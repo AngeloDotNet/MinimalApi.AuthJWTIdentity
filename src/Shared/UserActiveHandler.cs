@@ -23,7 +23,5 @@ public class UserActiveHandler(UserManager<ApplicationUser> userManager) : Autho
                 }
             }
         }
-
-        context.Succeed(requirement);
     }
 }
