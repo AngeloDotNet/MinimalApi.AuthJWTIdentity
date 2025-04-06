@@ -8,5 +8,5 @@ public class ApplicationUser : IdentityUser<Guid>
     public string LastName { get; set; } = null!;
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpirationDate { get; set; }
-    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = [];
+    public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = new List<ApplicationUserRole>();
 }
