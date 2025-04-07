@@ -6,4 +6,6 @@ Being an example it is a minimal configuration, which excludes the possibility o
 
 At the moment the configuration of the JWT token parameters have been replicated in the appsettings.json file of the 3 API projects.
 
+It is possible to implement complete JWT token management by adding users, roles, permissions and much more dynamically. To do this, you need to integrate this [library](https://github.com/AngeloDotNet/Packages.MinimalApi.Identity) into your project.
+
 Comments and/or suggestions are always welcome.
